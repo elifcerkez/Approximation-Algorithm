@@ -1,0 +1,55 @@
+#Pseudo Code
+
+PRINTLINE "Enter the assigned total task length (in half-hour(s)): "
+INPUT float(tasklength)
+
+INITIALIZE portions TO empty dictionary
+INITIALIZE id TO 1
+INITIALIZE len TO 0.5
+INITIALIZE n TO tasklength multiplied by 2
+INITIALIZE maxprofit TO 0
+
+FOR i = 0 TO int(n)
+	INITIALIZE unit TO 0
+	PRINTLINE “Enter the payment value (in TL) for task portion ID" + id + “having length", len, "hour(s): ”
+	INPUT float(income)
+
+	COMPUTE unit as income divided by len which is multiplied by 2
+	STORE (unit, id, len) in portions as key and income as value
+
+	IF unit is greater than or equal to maxprofit THEN
+		COMPUTE maxprofit as unit
+	END IF
+
+	INCREMENT id
+	ADD 0.5 to len
+	INCREMENT i
+END FOR
+
+INITIALIZE day TO 0
+INITIALIZE sortdata in descending order of portion’s keys
+INITIALIZE j TO 0
+INITIALIZE m TO 0
+
+PRINTLINE “”
+
+WHILE tasklength is greater than 0
+	IF tasklength is greater than or equal to sortdata[0][2] THEN
+		SUBSTRACT sortdata[m][2] FROM tasklength
+		INCREMENT day
+		PRINTLINE "On Day " + day + "do task portion with ID " + sort_data[m][1]
+
+	ELSE IF tasklength is less than sortdata[j][2] THEN
+		IF m is less than n and tasklength is greater or equal to sortdata[m+1][2] THEN
+			SUBSTRACT sortdata[m+1][2] FROM tasklength
+			INCREMENT day
+			PRINTLINE "On Day " + day + "do task portion with ID " + sort_data[m+1][1]
+			INCREMENT j
+		ELSE
+			INCREMENT m
+		END IF
+
+	ELSE
+		INCREMENT j
+	END IF
+END WHILE
